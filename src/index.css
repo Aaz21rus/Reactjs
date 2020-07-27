@@ -10,6 +10,10 @@ body {
   align-items: center;
 }
 
+p {
+  margin: 0;
+}
+
 h1 {
   margin: 0;
 }
@@ -36,4 +40,22 @@ h1 {
 
 .reg-title {
   margin-bottom: 20px;
+}
+
+.label {
+  margin-bottom: 10px;
+}
+
+.control-container {
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.field-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.registerbtn:not(:last-child) {
+  margin-right: 10px;
 }
