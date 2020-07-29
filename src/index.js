@@ -2,57 +2,70 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function Title(props) {
-  return (
-    <h1 className="reg-title">{props.txt}</h1>
-  )
+class Title extends React.Component {
+  render() {
+    return <h1 className="reg-title">{this.props.txt}</h1>
+  }
 }
 
-function Input(props) {
-  return (
-    <div className="input-container">
-      <label className="label" htmlFor="email">{props.value}</label>
-      <input className="input" type="text" placeholder={props.value} name={props.name} id={props.name} required></input>
-    </div>
-  )
+class Input extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {content:''}
+  }
+
+  render() {
+    return (
+      <div className="input-container">
+        <label className="label" htmlFor="email">{this.props.value}</label>
+        <input className="input" type="text" placeholder={this.props.value} name={this.props.name} id={this.props.name} required>{this.state.content}</input>
+      </div>
+    )
+  }
 }
 
-function Btn(props) {
-  return(
-    <button type={props.type} className="registerbtn">{props.txt}</button>
-  )
+class Btn extends React.Component {
+  render() {
+    return <button type={this.props.type} className="registerbtn">{this.props.txt}</button>
+  }
 }
 
-function Field(props) {
-  return(
-    <div className="field-container">
-      <p className="name">{props.name}</p>
-      <p className="data">{props.data}</p>
-    </div>
-  )
+class Field extends React.Component {
+  render() {
+    return (
+      <div className="field-container">
+        <p className="name">{this.props.name}</p>
+        <p className="data">{this.props.data}</p>
+      </div>
+    )
+  }
 }
 
-function FormReg() {
-  return(
-    <form className="container">
-      <Title txt="Регистрация" />
-      <Input value="Введите email" name="Email" />
-      <Input value="Введите пароль" name="psw" />
-      <Input value="Подтвердите пароль" name="psw-repeat" />
-      <Btn type="submit" txt="Registration" />
-    </form>
-  )
-} 
+class FormReg extends React.Component {
+  render() {
+    return (
+      <form className="container">
+        <Title txt="Регистрация" />
+        <Input value="Введите email" name="Email" />
+        <Input value="Введите пароль" name="psw" />
+        <Input value="Подтвердите пароль" name="psw-repeat" />
+        <Btn type="submit" txt="Registration" />
+      </form>
+    )
+  }
+}
 
-function FormEnter() {
-  return(
-    <form className="container">
-       <Title txt="Вход" />
-      <Input value="Введите email" name="Email" />
-      <Input value="Введите пароль" name="psw" />
-      <Btn type="submit" txt="Enter" />
-    </form>
-  )
+class FormEnter extends React.Component {
+  render() {
+    return (
+      <form className="container">
+        <Title txt="Вход" />
+        <Input value="Введите email" name="Email" />
+        <Input value="Введите пароль" name="psw" />
+        <Btn type="submit" txt="Enter" />
+      </form>
+    )
+  }
 }
 
 class Control extends React.Component {
@@ -88,7 +101,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
