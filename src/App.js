@@ -11,7 +11,18 @@ class App extends React.Component {
         email: '',
         psw: '',
         pswRepeat: '',
+        isAuth: false,
       },
+      FormEnter: {
+        email: '',
+        psw: '',
+        isAuth: false,
+      },
+      Control: {
+        name: '',
+        data: '',
+        isAuth: false,
+      }
     }
   }
 
