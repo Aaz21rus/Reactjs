@@ -10,7 +10,7 @@ class Input extends React.Component {
     return (
       <div className="input-container">
         <label className="label" htmlFor="email">{this.props.value}</label>
-        <input className="input" type="text" placeholder={this.props.value} name={this.props.name} id={this.props.name} required></input>
+        <input className="input" type="text" placeholder={this.props.value} name={this.props.name} id={this.props.name} value={this.props.fieldType} required></input>
       </div>
     )
   }
