@@ -45,24 +45,6 @@ class App extends React.Component {
     return alert('Invalid Registration') 
   }
 
-  login = e => {
-    e.preventDefault()
-    const {
-      FormEnter: { email, psw },
-      Control
-    } = this.state
-    if (email === Control.email && psw === Control.psw) {
-      return this.setState(
-        (prevState) => ({
-          ...prevState,
-          Control: { isAuth: true },
-        }),
-        () => console.log('login complite')
-      )
-    }
-    return alert('Invalid Login')
-  }
-
   handleChange = (formName, formField)=> ({ target: { value } })=> {
     this.setState(prevState => ({
       ...prevState,
@@ -76,7 +58,6 @@ class App extends React.Component {
   render () {
     const handlers = {
       registration: this.registration,
-      login: this.login,
       handleChange: this.handleChange,
     }
     return (
