@@ -11,8 +11,8 @@ class Control extends React.Component {
     return (
       <div className="control-container">
         <Title txt="Панель управления" />
-        <Field name="Имя:" data="Админ" />
-        <Field name="Email:" data="em21@mail.ru" />
+        <Field name="Email:" data="test@test.ru" />
+        <Field name="Psw:" data="123" />
         <div className="btn-container">
           <Btn type="" txt="Edit" action={Edit} />
           <Btn type="" txt="Log out" action={LogOut} />

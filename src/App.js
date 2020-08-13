@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import FormReg from './components/FormReg'
 import FormEnter from './components/FormEnter'
 import Control from './components/Control'
+import { AppContext } from './context' // почему  {}
 
 
     
@@ -13,38 +14,65 @@ class App extends React.Component {
         email: '',
         psw: '',
         pswRepeat: '',
-        isAuth: false,
       },
       FormEnter: {
         email: '',
         psw: '',
-        isAuth: false,
       },
       Control: {
-        name: '',
-        data: '',
+        email: 'test@test.ru',
+        psw: '123',
         isAuth: false,
       }
     }
   }
+
+  registration = e => {
+    e.preventDefault()
+    const { 
+      FormReg: { email, psw }, 
+      Control 
+    } = this.state
+    if (email === Control.email && psw === Control.psw) {
+      return this.setState(
+        (prevState) => ({ // скобки
+          ...prevState,
+          Control: { isAuth: true },
+        }), 
+        () => console.log('Registration complite')
+      )
+    }
+    return alert('Invalid Registration') 
+  }
+
+  handleChange = (formName, formField)=> ({ target: { value } })=> {
+    this.setState(prevState => ({
+      ...prevState,
+      [formName]: {
+        ...prevState[formName],
+        [formField]: value,
+      }
+    }))
+  }
   
   render () {
+    const handlers = {
+      registration: this.registration,
+      handleChange: this.handleChange,
+    }
     return (
-      <div>
-        <FormReg />,
-        <FormEnter />,
-        <Control />
-      </div>
+      <AppContext.Provider value={{ ...this.state, handlers }}>
+        {!this.state.Control.isAuth ? (
+          <Fragment>
+            <FormReg />,
+            <FormEnter />,      
+          </Fragment>
+        ) : (
+          <Control />
+        )}      
+      </AppContext.Provider>
     )
   }
 }
 
 export default App
-
-//Вопросы:
-//- структура компонентов
-//- вложенность компонентов 
-//- оброботчик, куда вешать
-//- состояние куда вешать
-//- webpack
-//- css

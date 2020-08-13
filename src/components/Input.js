@@ -1,16 +1,17 @@
 import React from 'react';
     
-class Input extends React.Component {
-  //   constructor(props) {
-  //     super(props)
-  //     this.state = {content:''}
-//   }
-    
+class Input extends React.Component {    
   render() {
+    const { handleChange, value } = this.props
     return (
       <div className="input-container">
         <label className="label" htmlFor="email">{this.props.value}</label>
-        <input className="input" type="text" placeholder={this.props.value} name={this.props.name} id={this.props.name} value={this.props.fieldType} required></input>
+        <input className="input" 
+          type="text" 
+          onChange={ handleChange }
+          name={this.props.name} 
+          id={this.props.name} 
+          val={value} />
       </div>
     )
   }
