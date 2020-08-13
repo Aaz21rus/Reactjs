@@ -6,8 +6,7 @@ import { AppContext } from '../context'
 
 class FormReg extends React.Component {  
    render() {
-    console.log()
-    const { FormReg: {email, psw, pswRepeat}, handlers: { registration, handleChange } } = this.context
+    const { FormReg: {email, psw, pswRepeat}, handlers: { registration, handleChange } } = this.context // название const {}
     return (  
       <form className="container">
         <Title txt="Регистрация" />
