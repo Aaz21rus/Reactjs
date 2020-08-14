@@ -111,7 +111,7 @@ class App extends React.Component {
             <Route path="/FormReg" component={ FormReg } />
             <Route path="/FormEnter" component={ FormEnter } />
             <Route path="/Control" component={ Control } />
-          </Switch>
+          </Switch> 
         </Router>
       </AppContext.Provider>
     )
