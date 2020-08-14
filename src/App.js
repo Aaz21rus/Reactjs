@@ -1,10 +1,14 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 import FormReg from './components/FormReg'
 import FormEnter from './components/FormEnter'
 import Control from './components/Control'
 import { AppContext } from './context' // почему  {}
-
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
     
 class App extends React.Component {
   constructor(props) {
@@ -30,7 +34,7 @@ class App extends React.Component {
   registration = e => {
     e.preventDefault()
     const { 
-      FormReg: { email, psw }, 
+      FormReg: { email, psw, pswRepeat }, 
       Control 
     } = this.state
     if (email === Control.email && psw === Control.psw) {
@@ -81,14 +85,34 @@ class App extends React.Component {
     }
     return (
       <AppContext.Provider value={{ ...this.state, handlers }}>
-        {!this.state.Control.isAuth ? (
-          <Fragment>
+        {/* {!this.state.Control.isAuth ? ( */}
+          {/* <Fragment>
             <FormReg />,
             <FormEnter />,      
           </Fragment>
         ) : (
           <Control />
-        )}      
+        )}       */}
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/FormReg">FormReg</Link>
+              </li>
+              <li>
+                <Link to="/FormEnter">FormEnter</Link>
+              </li>
+              <li>
+                <Link to="/Control">Control</Link>
+              </li>
+            </ul>
+          </div>
+          <Switch>
+            <Route path="/FormReg" component={ FormReg } />
+            <Route path="/FormEnter" component={ FormEnter } />
+            <Route path="/Control" component={ Control } />
+          </Switch>
+        </Router>
       </AppContext.Provider>
     )
   }
