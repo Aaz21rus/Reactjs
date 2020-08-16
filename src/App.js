@@ -48,7 +48,17 @@ class App extends React.Component {
       if (psw === pswRepeat) {
         return ( 
           console.log('Registration complite'),
-          console.log(email, psw)
+          
+          Control.push(
+            {
+              email: email,
+              psw: psw,
+              isAuth: false,
+            }
+          ),
+          <Router>
+            
+          </Router>
 
           // () => console.log('Registration faled')
           // this.setState(
@@ -56,6 +66,7 @@ class App extends React.Component {
           //   ...prevState,
             // Control: { isAuth: true },
           // }
+      
         )  
       }
     }
