@@ -23,11 +23,18 @@ class App extends React.Component {
         email: '',
         psw: '',
       },
-      Control: {
-        email: 'test@test.ru',
-        psw: '123',
-        isAuth: false,
-      }
+      Control: [
+        {
+          email: 'test@test.ru',
+          psw: '123',
+          isAuth: false,
+        },
+        {
+          email: 'test2@test.ru',
+          psw: '123',
+          isAuth: false,
+        }
+      ]
     }
   }
 
@@ -37,16 +44,22 @@ class App extends React.Component {
       FormReg: { email, psw, pswRepeat }, 
       Control 
     } = this.state
-    if (email === Control.email && psw === Control.psw) {
-      return this.setState(
-        (prevState) => ({ // скобки
-          ...prevState,
-          Control: { isAuth: true },
-        }), 
-        () => console.log('Registration complite')
-      )
+    if (!Control.some( item => item.email === email )) {
+      if (psw === pswRepeat) {
+        return ( 
+          console.log('Registration complite'),
+          console.log(email, psw)
+
+          // () => console.log('Registration faled')
+          // this.setState(
+          // (prevState) => ({
+          //   ...prevState,
+            // Control: { isAuth: true },
+          // }
+        )  
+      }
     }
-    return alert('Invalid Registration') 
+    return alert('Registration faled') 
   }
 
   login = e => {
@@ -85,14 +98,6 @@ class App extends React.Component {
     }
     return (
       <AppContext.Provider value={{ ...this.state, handlers }}>
-        {/* {!this.state.Control.isAuth ? ( */}
-          {/* <Fragment>
-            <FormReg />,
-            <FormEnter />,      
-          </Fragment>
-        ) : (
-          <Control />
-        )}       */}
         <Router>
           <div>
             <ul>
@@ -108,7 +113,7 @@ class App extends React.Component {
             </ul>
           </div>
           <Switch>
-            <Route path="/FormReg" component={ FormReg } />
+            <Route exact path="/FormReg" component={ FormReg } />
             <Route path="/FormEnter" component={ FormEnter } />
             <Route path="/Control" component={ Control } />
           </Switch> 
