@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import FormReg from './components/FormReg'
 import FormEnter from './components/FormEnter'
 import Control from './components/Control'
-import { AppContext } from './context' // почему  {}
+import { AppContext } from './context' 
 import {
   BrowserRouter as Router,
   Switch,
@@ -39,7 +39,7 @@ class App extends React.Component {
     } = this.state
     if (email === Control.email && psw === Control.psw) {
       return this.setState(
-        (prevState) => ({ // скобки
+        (prevState) => ({
           ...prevState,
           Control: { isAuth: true },
         }), 
@@ -85,14 +85,6 @@ class App extends React.Component {
     }
     return (
       <AppContext.Provider value={{ ...this.state, handlers }}>
-        {/* {!this.state.Control.isAuth ? ( */}
-          {/* <Fragment>
-            <FormReg />,
-            <FormEnter />,      
-          </Fragment>
-        ) : (
-          <Control />
-        )}       */}
         <Router>
           <div>
             <ul>

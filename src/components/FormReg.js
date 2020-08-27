@@ -3,9 +3,10 @@ import Title from './Title'
 import Input from './Input'
 import Btn from './Btn'
 import { AppContext } from '../context'
+import FormEnter from './FormEnter'
 
 class FormReg extends React.Component {  
-   render() {
+  render() {
     const { FormReg: {email, psw, pswRepeat}, handlers: { registration, handleChange } } = this.context // название const {}
     return (  
       <form className="container">
