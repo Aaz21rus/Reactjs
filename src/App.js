@@ -47,8 +47,9 @@ class App extends React.Component {
     if (email !== null) {
       if (!Control.some(item => item.email === email)) {
         if (psw === pswRepeat) {
+          // noinspection CommaExpressionJS
           return (
-            console.log('Registration complite'),
+            alert('Registration complite'),
             Control.push(
               {
                 email: email,
