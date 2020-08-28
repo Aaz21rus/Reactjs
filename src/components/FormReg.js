@@ -1,7 +1,7 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 import Title from './Title'
 import Input from './Input'
-import Btn from './Btn'
 import { AppContext } from '../context'
 
 class FormReg extends React.Component {  
@@ -28,7 +28,10 @@ class FormReg extends React.Component {
           handleChange={handleChange('FormReg', 'pswRepeat')} 
           val={pswRepeat} 
         />
-        <Btn type="submit" txt="Sign up" action={registration} />
+        <Button variant="primary" size="lg" type="submit" block onClick={registration}>
+            Sign up
+        </Button>
+        {/*<Btn type="submit" txt="Sign up" action={registration} />*/}
       </form>
     )
   }

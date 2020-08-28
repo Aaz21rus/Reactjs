@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import FormReg from './components/FormReg'
 import FormEnter from './components/FormEnter'
 import Control from './components/Control'
@@ -7,7 +7,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
     
 class App extends React.Component {
@@ -44,30 +44,29 @@ class App extends React.Component {
       FormReg: { email, psw, pswRepeat }, 
       Control 
     } = this.state
-    if (!Control.some( item => item.email === email )) {
-      if (psw === pswRepeat) {
-        return ( 
-          console.log('Registration complite'),
-          
-          Control.push(
-            {
-              email: email,
-              psw: psw,
-              isAuth: false,
-            }
-          ),
-          <Router>
-            
-          </Router>
+    if (email !== null) {
+      if (!Control.some(item => item.email === email)) {
+        if (psw === pswRepeat) {
+          return (
+            console.log('Registration complite'),
+            Control.push(
+              {
+                email: email,
+                psw: psw,
+                isAuth: false,
+              }
+            )
+            // <Redirect to="/Control"/>
 
-          // () => console.log('Registration faled')
-          // this.setState(
-          // (prevState) => ({
-          //   ...prevState,
-            // Control: { isAuth: true },
-          // }
-      
-        )  
+              // () => console.log('Registration faled')
+              // this.setState(
+              // (prevState) => ({
+              //   ...prevState,
+              // Control: { isAuth: true },
+              // }
+
+          )
+        }
       }
     }
     return alert('Registration faled') 
