@@ -70,7 +70,7 @@ class App extends React.Component {
         }
       }
     }
-    return alert('Registration faled') 
+    return alert('Registration faled')
   }
 
   login = e => {
