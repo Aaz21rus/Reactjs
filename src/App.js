@@ -40,37 +40,51 @@ class App extends React.Component {
 
   registration = e => {
     e.preventDefault()
-    const { 
+    const {
       FormReg: { email, psw, pswRepeat }, 
-      Control 
+      Control
     } = this.state
-    if (email !== null) {
-      if (!Control.some(item => item.email === email)) {
-        if (psw === pswRepeat) {
-          // noinspection CommaExpressionJS
-          return (
-            alert('Registration complite'),
-            Control.push(
-              {
-                email: email,
-                psw: psw,
-                isAuth: false,
-              }
-            )
-            // <Redirect to="/Control"/>
 
-              // () => console.log('Registration faled')
-              // this.setState(
-              // (prevState) => ({
-              //   ...prevState,
-              // Control: { isAuth: true },
-              // }
-
-          )
-        }
+    let controlEmail = Control.forEach(item => {
+      if (item === email) {
+        return item.email
       }
+    })
+
+    switch (email) {
+      case '':
+      return alert('Registration failed')
+      break
     }
-    return alert('Registration faled')
+    return alert('Registration complite')
+
+    // if (email !== null) {
+    //   if (!Control.some(item => item.email === email)) {
+    //     if (psw === pswRepeat) {
+    //       return (
+    //         alert('Registration complite'),
+    //         Control.push(
+    //           {
+    //             email: email,
+    //             psw: psw,
+    //             isAuth: false,
+    //           }
+    //         ),
+    //        console.log(Control)
+    //         // <Redirect to="/Control"/>
+    //
+    //           // () => console.log('Registration faled')
+    //           // this.setState(
+    //           // (prevState) => ({
+    //           //   ...prevState,
+    //           // Control: { isAuth: true },
+    //           // }
+    //
+    //       )
+    //     }
+    //   }
+    // }
+
   }
 
   login = e => {
