@@ -55,6 +55,8 @@ class App extends React.Component {
       case '':
       return alert('Registration failed')
       break
+      default:
+
     }
     return alert('Registration complite')
 
