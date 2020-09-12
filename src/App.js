@@ -44,21 +44,22 @@ class App extends React.Component {
       FormReg: { email, psw, pswRepeat }, 
       Control
     } = this.state
+    const {}
+    console.log(FormReg.)
+    // let controlEmail = Control.forEach(item => {
+    //   if (item === email) {
+    //     return item.email
+    //   }
+    // })
 
-    let controlEmail = Control.forEach(item => {
-      if (item === email) {
-        return item.email
-      }
-    })
+    // switch (email) {
+    //   case '':
+    //   return alert('Registration failed')
+    //   break
+    //   default:
 
-    switch (email) {
-      case '':
-      return alert('Registration failed')
-      break
-      default:
-
-    }
-    return alert('Registration complite')
+    // }
+    // return alert('Registration complite')
 
     // if (email !== null) {
     //   if (!Control.some(item => item.email === email)) {
