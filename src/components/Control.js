@@ -1,12 +1,14 @@
 import React from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
+import { AppContext } from '../context'
 
-const Edit = () => {alert('Редактировать!')} 
-const LogOut = () => {alert('Выход!')} 
+// const Edit = () => {alert('Редактировать!')}
+// const LogOut = () => {alert('Выход!')}
 
 class Control extends React.Component {
   render() {
+    const { handlers: { edit, logOut } } = this.context
     return (
       <Jumbotron>
         <h1 className="text-center">Панель управления</h1>
@@ -27,12 +29,14 @@ class Control extends React.Component {
               </p>
           </div>
           <p className="d-flex">
-            <Button variant="primary mr-1" onClick={Edit}>Edit</Button>
-            <Button variant="primary" onClick={LogOut}>Log out</Button>
+            <Button variant="primary mr-1" onClick={edit}>Edit</Button>
+            <Button variant="primary" onClick={logOut}>Log out</Button>
           </p>
       </Jumbotron>
     )
   }
 }
+
+Control.contextType = AppContext
 
 export default Control
