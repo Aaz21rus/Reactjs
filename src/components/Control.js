@@ -3,9 +3,6 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 import { AppContext } from '../context'
 
-// const Edit = () => {alert('Редактировать!')}
-// const LogOut = () => {alert('Выход!')}
-
 class Control extends React.Component {
   render() {
     const { handlers: { edit, logOut } } = this.context
