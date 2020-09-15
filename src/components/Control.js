@@ -1,7 +1,6 @@
 import React from 'react'
-import Title from './Title'
-import Field from './Field'
-import Btn from './Btn'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Button from 'react-bootstrap/Button'
 
 const Edit = () => {alert('Редактировать!')} 
 const LogOut = () => {alert('Выход!')} 
@@ -9,15 +8,29 @@ const LogOut = () => {alert('Выход!')}
 class Control extends React.Component {
   render() {
     return (
-      <div className="control-container">
-        <Title txt="Панель управления" />
-        <Field name="Email:" data="test@test.ru" />
-        <Field name="Psw:" data="123" />
-        <div className="btn-container">
-          <Btn type="" txt="Edit" action={Edit} />
-          <Btn type="" txt="Log out" action={LogOut} />
-        </div>
-      </div>
+      <Jumbotron>
+        <h1 className="text-center">Панель управления</h1>
+          <div className="d-flex">
+            <p className="mr-1">
+              Email:
+            </p>
+            <p>
+              test@test.ru
+            </p>
+          </div>
+          <div className="d-flex">
+              <p className="mr-1">
+                Psw:
+              </p>
+              <p>
+                123
+              </p>
+          </div>
+          <p className="d-flex">
+            <Button variant="primary mr-1" onClick={Edit}>Edit</Button>
+            <Button variant="primary" onClick={LogOut}>Log out</Button>
+          </p>
+      </Jumbotron>
     )
   }
 }

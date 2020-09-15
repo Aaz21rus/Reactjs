@@ -23,7 +23,7 @@ h1 {
     monospace;
 } */
 
-.container {
+.cont {
   display: flex;
   flex-direction: column;
   align-items: center;

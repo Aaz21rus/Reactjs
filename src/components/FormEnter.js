@@ -1,33 +1,26 @@
 import React from 'react'
-import Title from './Title'
-import Input from './Input'
-import Btn from './Btn'
 import { AppContext } from '../context'
+import {Form} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 class FormEnter extends React.Component {
   render() {
     const { FormEnter: { email, psw }, handlers: { login, handleChange } } = this.context
     return (
-      <form className="container">
-        <Title txt="Вход" />
-        <Input 
-          value="Введите email" 
-          name="Email" 
-          handleChange={ handleChange('FormEnter', 'email') }
-          val={ email }
-        />
-        <Input 
-          value="Введите пароль" 
-          name="psw" 
-          handleChange={ handleChange('FormEnter', 'psw') }
-          val={ psw }
-        />
-        <Btn 
-          type="submit" 
-          txt="Log in" 
-          action={ login } 
-        />
-      </form>
+      <Form className="p-3 border">
+        <h2 className="text-center">Вход</h2>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" name="email" onChange={ handleChange } val={email} />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" name="psw" onChange={ handleChange } val={psw} />
+          </Form.Group>
+          <Button variant="primary" type="submit" block onClick={login}>
+              Submit
+          </Button>
+        </Form>
     )
   }
 }

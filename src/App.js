@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import FormReg from './components/FormReg'
 import FormEnter from './components/FormEnter'
 import Control from './components/Control'
@@ -7,7 +7,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
 
 class App extends React.Component {
@@ -37,112 +37,68 @@ class App extends React.Component {
       ]
     }
   }
+    registration = ()=> {
+      alert('registration')
+    }
 
-  registration = e => {
-    e.preventDefault()
-    const {
-      FormReg: { email, psw, pswRepeat },
-      Control
-    } = this.state
+    login = e => {
+      e.preventDefault()
+      alert("login")
+    }
 
-    if (email === Control.email && psw === Control.psw) {
-      return this.setState(
-        (prevState) => ({
-          ...prevState,
-          Control: { isAuth: true },
-        }),
-        () => console.log('Registration complite')
-      )
+    handleChange = (e)=> {
+      alert('handleChange')
+      this.setState(prevState => ({
+        ...prevState,
+        FormReg: {
+          email: e.target.value,
+          psw:  e.target.value,
+          pswRepeat:  e.target.value,
+        }
+      }))
 
-    if (!Control.some( item => item.email === email )) {
-      if (psw === pswRepeat) {
-        return (
-          console.log('Registration complite'),
+      // (formName, formField) => ({target: {value}})
+      // this.setState(prevState => ({
+      //   ...prevState,
+      //   [formName]: {
+      //     ...prevState[formName],
+      //     [formField]: value,
+      //   }
+      // }))
+    }
 
-          Control.push(
-            {
-              email: email,
-              psw: psw,
-              isAuth: false,
-            }
-          ),
-          <Router>
-
-          </Router>
-
-          // () => console.log('Registration faled')
-          // this.setState(
-          // (prevState) => ({
-          //   ...prevState,
-            // Control: { isAuth: true },
-          // }
-
-        )
+    render()
+    {
+      const handlers = {
+        registration: this.registration,
+        login: this.login,
+        handleChange: this.handleChange,
       }
->>>>>>> 433380eb4ea9b095160ebbf02471e61b2d23d305
-    }
-    return alert('Registration faled')
-  }
-
-  login = e => {
-    e.preventDefault()
-    const {
-      FormEnter: { email, psw },
-      Control
-    } = this.state
-    if (email === Control.email && psw === Control.psw) {
-      return this.setState(
-        (prevState) => ({
-          ...prevState,
-          Control: { isAuth: true },
-        }),
-        () => console.log('login complite')
+      return (
+          <AppContext.Provider value={{...this.state, handlers}}>
+            <Router>
+              <div>
+                <ul>
+                  <li>
+                    <Link to="/FormReg">FormReg</Link>
+                  </li>
+                  <li>
+                    <Link to="/FormEnter">FormEnter</Link>
+                  </li>
+                  <li>
+                    <Link to="/Control">Control</Link>
+                  </li>
+                </ul>
+              </div>
+              <Switch>
+                <Route exact path="/FormReg" component={FormReg}/>
+                <Route path="/FormEnter" component={FormEnter}/>
+                <Route path="/Control" component={Control}/>
+              </Switch>
+            </Router>
+          </AppContext.Provider>
       )
     }
-    return alert('Invalid Login')
-  }
-
-  handleChange = (formName, formField)=> ({ target: { value } })=> {
-    this.setState(prevState => ({
-      ...prevState,
-      [formName]: {
-        ...prevState[formName],
-        [formField]: value,
-      }
-    }))
-  }
-
-  render () {
-    const handlers = {
-      registration: this.registration,
-      login: this.login,
-      handleChange: this.handleChange,
-    }
-    return (
-      <AppContext.Provider value={{ ...this.state, handlers }}>
-        <Router>
-          <div>
-            <ul>
-              <li>
-                <Link to="/FormReg">FormReg</Link>
-              </li>
-              <li>
-                <Link to="/FormEnter">FormEnter</Link>
-              </li>
-              <li>
-                <Link to="/Control">Control</Link>
-              </li>
-            </ul>
-          </div>
-          <Switch>
-            <Route exact path="/FormReg" component={ FormReg } />
-            <Route path="/FormEnter" component={ FormEnter } />
-            <Route path="/Control" component={ Control } />
-          </Switch>
-        </Router>
-      </AppContext.Provider>
-    )
-  }
-}
+ }
 
 export default App

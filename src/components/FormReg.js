@@ -1,36 +1,30 @@
 import React from 'react'
-import Title from './Title'
-import Input from './Input'
-import Btn from './Btn'
+import Button from 'react-bootstrap/Button'
 import { AppContext } from '../context'
-import FormEnter from './FormEnter'
+import { Form } from "react-bootstrap"
 
-class FormReg extends React.Component {  
+class FormReg extends React.Component {
   render() {
     const { FormReg: {email, psw, pswRepeat}, handlers: { registration, handleChange } } = this.context // название const {}
-    return (  
-      <form className="container">
-        <Title txt="Регистрация" />
-        <Input 
-          value="Введите email" 
-          name="Email"
-          handleChange={handleChange('FormReg', 'email')}
-          val={email} 
-        />
-        <Input 
-          value="Введите пароль" 
-          name="psw"
-          handleChange={handleChange('FormReg', 'psw')} 
-          val={psw} 
-        />
-        <Input 
-          value="Подтвердите пароль" 
-          name="pswRepeat"
-          handleChange={handleChange('FormReg', 'pswRepeat')} 
-          val={pswRepeat} 
-        />
-        <Btn type="submit" txt="Sign up" action={registration} />
-      </form>
+    return (
+      <Form className="p-3 border">
+        <h2 className="text-center">Регистрация</h2>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" name="email" onChange={ handleChange } val={email} />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" name="psw" onChange={ handleChange } val={psw} />
+        </Form.Group>
+        <Form.Group controlId="formBasicPasswordRepeat">
+          <Form.Label>Repeat password</Form.Label>
+          <Form.Control type="password" placeholder="Password" name="pswRepeat" onChange={ handleChange } val={pswRepeat} />
+        </Form.Group>
+        <Button variant="primary" type="submit" block onClick={registration}>
+          Sign up
+        </Button>
+      </Form>
     )
   }
 }
