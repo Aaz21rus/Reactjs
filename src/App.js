@@ -38,25 +38,64 @@ class App extends React.Component {
     }
   }
 
-    registration = ()=> {
-      alert('registration')
+    registration = e => {
+      e.preventDefault()
+      const controlEmail = this.state.Control.map(({email}) => email)
+      const { FormReg: {email, psw, pswRepeat} } = this.state
+      const repeatEmail = controlEmail.find(item => item === email)
+
+      switch (email) {
+        case "":
+          alert('empty string')
+          break
+        case repeatEmail:
+          alert('email exist')
+          break
+      }
+      switch (true) {
+        case (psw === ""):
+          alert('empty string')
+          break
+        case (psw !== pswRepeat):
+          alert('incorrect pswRepeat')
+          break
+      }
+      switch (pswRepeat) {
+        case "":
+          alert('empty string')
+          break
+      }
+
+      this.state.Control.push({email,psw,isAuth:false})
+      console.log(this.state)
     }
 
     login = e => {
       e.preventDefault()
-      alert("login")
+      console.log(this.state)
     }
 
-    handleChange = (e)=> {
-      alert('handleChange')
-      this.setState(prevState => ({
+    handleChange = e => {
+      e.persist()
+      this.setState((prevState) => ({
         ...prevState,
         FormReg: {
-          email: e.target.value,
-          psw:  e.target.value,
-          pswRepeat:  e.target.value,
+          ...prevState.FormReg,
+          [e.target.name]: e.target.value,
         }
       }))
+    }
+
+    handleChange2 = e => {
+      e.persist()
+      this.setState((prevState) => ({
+        ...prevState,
+        FormEnter: {
+          ...prevState.FormEnter,
+          [e.target.name]: e.target.value,
+        }
+      }))
+    }
 
       // (formName, formField) => ({target: {value}})
       // this.setState(prevState => ({
@@ -66,7 +105,6 @@ class App extends React.Component {
       //     [formField]: value,
       //   }
       // }))
-    }
 
     edit = () => {alert('Редактировать!')}
 
@@ -78,6 +116,7 @@ class App extends React.Component {
         registration: this.registration,
         login: this.login,
         handleChange: this.handleChange,
+        handleChange2: this.handleChange2,
         edit: this.edit,
         logOut: this.logOut
       }
