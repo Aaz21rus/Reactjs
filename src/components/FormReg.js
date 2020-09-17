@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import { AppContext } from '../context'
-import { Form } from "react-bootstrap"
+import { Form } from 'react-bootstrap'
 
 class FormReg extends React.Component {
   render() {

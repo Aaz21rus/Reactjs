@@ -34,11 +34,12 @@ class App extends React.Component {
           psw: '123',
           isAuth: false,
         }
-      ]
+      ],
+      Alert: {  }
     }
   }
 
-    registration = e => {
+    registration = (e) => {
       e.preventDefault()
       const controlEmail = this.state.Control.map(({email}) => email)
       const { FormReg: {email, psw, pswRepeat} } = this.state
@@ -51,6 +52,8 @@ class App extends React.Component {
         case repeatEmail:
           alert('email exist')
           break
+        default:
+          return this.render( <Control /> )
       }
       switch (true) {
         case (psw === ""):
@@ -59,14 +62,18 @@ class App extends React.Component {
         case (psw !== pswRepeat):
           alert('incorrect pswRepeat')
           break
+        default:
+          return this.render( <Control /> )
       }
       switch (pswRepeat) {
         case "":
           alert('empty string')
           break
+        default:
+          return this.render( <Control /> )
       }
 
-      this.state.Control.push({email,psw,isAuth:false})
+      this.state.Control.push({email,psw,isAuth:true})
       console.log(this.state)
     }
 
@@ -112,6 +119,12 @@ class App extends React.Component {
 
   render()
     {
+      const isAuth = this.state.Control.map(({isAuth}) => isAuth)
+      console.log(isAuth)
+      let control
+      if(isAuth) {
+        control = <Control />
+      }
       const handlers = {
         registration: this.registration,
         login: this.login,
@@ -136,6 +149,7 @@ class App extends React.Component {
                   </li>
                 </ul>
               </div>
+              {control}
               <Switch>
                 <Route exact path="/FormReg" component={FormReg}/>
                 <Route path="/FormEnter" component={FormEnter}/>
