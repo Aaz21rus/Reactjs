@@ -8,12 +8,14 @@ import {
   Switch,
   Route,
   Link,
+  Redirect
 } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      showControl: false,
       FormReg: {
         email: '',
         psw: '',
@@ -65,16 +67,21 @@ class App extends React.Component {
         default:
           return this.render( <Control /> )
       }
-      switch (pswRepeat) {
-        case "":
-          alert('empty string')
-          break
-        default:
-          return this.render( <Control /> )
-      }
+      // switch (pswRepeat) {
+      //   case "":
+      //     alert('empty string')
+      //     break
+      //   default:
+      //     return this.render( <Control /> )
+      // }
 
       this.state.Control.push({email,psw,isAuth:true})
       console.log(this.state)
+      return (<Route
+        render={
+          {Control}
+        }
+      />)
     }
 
     login = e => {
@@ -119,12 +126,12 @@ class App extends React.Component {
 
   render()
     {
-      const isAuth = this.state.Control.map(({isAuth}) => isAuth)
-      console.log(isAuth)
-      let control
-      if(isAuth) {
-        control = <Control />
-      }
+      // const isAuth = this.state.Control.find(item => item.isAuth === true)
+      // console.log(isAuth)
+      // let control
+      // if(isAuth) {
+      //   control = <Control />
+      // }
       const handlers = {
         registration: this.registration,
         login: this.login,
@@ -149,7 +156,6 @@ class App extends React.Component {
                   </li>
                 </ul>
               </div>
-              {control}
               <Switch>
                 <Route exact path="/FormReg" component={FormReg}/>
                 <Route path="/FormEnter" component={FormEnter}/>
