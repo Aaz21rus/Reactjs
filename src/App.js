@@ -8,7 +8,8 @@ import {
   Switch,
   Route,
   Link,
-  Redirect
+  Redirectб,
+  useHistory
 } from "react-router-dom";
 
 class App extends React.Component {
@@ -54,8 +55,6 @@ class App extends React.Component {
         case repeatEmail:
           alert('email exist')
           break
-        default:
-          return this.render( <Control /> )
       }
       switch (true) {
         case (psw === ""):
@@ -64,8 +63,6 @@ class App extends React.Component {
         case (psw !== pswRepeat):
           alert('incorrect pswRepeat')
           break
-        default:
-          return this.render( <Control /> )
       }
       // switch (pswRepeat) {
       //   case "":
@@ -77,11 +74,8 @@ class App extends React.Component {
 
       this.state.Control.push({email,psw,isAuth:true})
       console.log(this.state)
-      return (<Route
-        render={
-          {Control}
-        }
-      />)
+      let history = useHistory()
+      history.push('./components/Control')
     }
 
     login = e => {
