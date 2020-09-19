@@ -9,7 +9,7 @@ import {
   Route,
   Link,
   Redirectб,
-  useHistory
+  useHistory,
 } from "react-router-dom";
 
 class App extends React.Component {
@@ -74,8 +74,6 @@ class App extends React.Component {
 
       this.state.Control.push({email,psw,isAuth:true})
       console.log(this.state)
-      let history = useHistory()
-      history.push('./components/Control')
     }
 
     login = e => {
